@@ -1,14 +1,25 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Tour of Thrones
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <h1>{{title}}</h1>
+  <h2>For the Throne</h2>
+  <ul class="characters">
+    <li *ngFor="let char of characters" [class.selected]="char === selectedChar" (click)="onSelect(char)">
+      <span class="badge">{{char.id}}</span> {{char.name}}
+    </li>
+  </ul>
+  <div *ngIf="selectedChar">
+    <h2>{{selectedChar.name}} details!</h2>
+    <div><label>id: </label>{{selectedChar.id}}</div>
+    <div>
+      <label>name: </label>
+      <input [(ngModel)]="selectedChar.name" placeholder="name" />
+    </div>
+  </div>
 </ion-content>
